@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: 'Montserrt', sans-serif;
+    background: linear-gradient(45deg,#d8f2f3 0%,#ebf9f9 100%);
+}
+
+.center,.front-face,.contents,.back-face {
+    position: absolute;
+}
+
+.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 500px;
+    width: 350px;
+    transform-style: preserve-3d;/*Убираеться часть выворот*/
+    /* perspective: 100px; */
+}
+
+.front-face,.back-face {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,.2),
+    rgba(0,0,0,.2)),url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/256492/_mLIxaKY_400x400.jpg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    backface-visibility: hidden;/*Сделать видимой скрытую первую часть*/
+    /*transition: .5s; Плавный переход для смены картинок*/
+    transform-style: preserve-3d;/*Поворот в 3д*/
+    transition: transform .7s cubic-bezier(.4,.2,.2,1);
+}
+
+.contents {
+    left: 0;
+    top: 80%;
+    width: 100%;
+    perspective: 1000px;
+    /*  */
+    transform: translateY(-50%) translateZ(60px) scale(0.94);
+}
+
+.front p {
+    color: #fff;
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.front p:after {
+    content: '';
+    display: block;
+    left: 0;
+    right: 0;
+    height: 2px;
+    width: 100px;
+    background: white;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.front span {
+    color: #fff;
+    font-size: 23px;
+    
+}
+
+.back-face{
+    transform: rotateY(180deg); /*ШИВОРОТ НА ВЫВОРОТ*/
+    background: linear-gradient(45deg,#043348 0%,#032535 100%);
+  }
+
+  .back {
+    color: #fff;
+  }
+
+  .back h2 {
+      font-size: 33px;
+      padding-bottom: 5px;
+  }
+
+  .back span {
+      font-size: 25px;
+  }
+
+  .icons {
+    margin: 10px 0;
+    display: block;
+  }
+  i.fab {
+    color:  #042f4b;
+    font-size: 20px;
+    height: 40px;
+    width: 40px;
+    background: white;
+    border-radius: 50%;
+    line-height: 40px;/*опустить в центр*/
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .center:hover > .back-face{
+    transform: rotateY(0deg);
+  }
+
+  .center:hover > .front-face{
+    transform: rotateY(-180deg);
+  }
